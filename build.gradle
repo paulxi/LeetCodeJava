@@ -9,6 +9,8 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'checkstyle'
+    id 'nebula.lint' version '8.3.2'
 }
 
 dependencies {
@@ -17,8 +19,8 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
 
     // Use JUnit test framework
-    testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.1.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
 test {
@@ -32,12 +34,22 @@ repositories {
     jcenter()
 }
 
-version = '0.1.0'
+version = '0.1.0-SNAPSHOT'
 
 jar {
     manifest {
         attributes('Implementation-Title': project.name,
                 'Implementation-Version': project.version)
     }
+}
+
+checkstyle {
+    toolVersion = "8.8"
+}
+
+gradleLint {
+    rules  = ['dependency-parentheses']
+    criticalRules = ['unused-dependency']
+    reportFormat = 'xml'
 }
 
