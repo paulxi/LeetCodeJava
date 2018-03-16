@@ -7,9 +7,10 @@ public class Solution {
   /**
    * Given an array of integers, return indices of the two numbers such that they add up to
    * a specific target.
-   * @param nums an array of integers
+   *
+   * @param nums   an array of integers
    * @param target a specific target
-   * @return
+   * @return an array of indices
    */
   public int[] twoSum(int[] nums, int target) {
     Map<Integer, Integer> map = new HashMap<>();
@@ -19,7 +20,7 @@ public class Solution {
       int value = target - item;
       Integer valueIndex = map.get(value);
       if (valueIndex != null) {
-        return new int[]{valueIndex.intValue(), index};
+        return new int[] {valueIndex, index};
       }
       map.put(item, index);
     }
