@@ -35,7 +35,9 @@ public class Solution {
       } else {
         int maxLeft = 0;
         if (i == 0) {
-          maxLeft = nums2[j - 1];
+          if (j > 0) {
+            maxLeft = nums2[j - 1];
+          }
         } else if (j == 0) {
           maxLeft = nums1[i - 1];
         } else {
@@ -44,7 +46,9 @@ public class Solution {
 
         int minRight = 0;
         if (i == m) {
-          minRight = nums2[j];
+          if (j < n) {
+            minRight = nums2[j];
+          }
         } else if (j == n) {
           minRight = nums1[i];
         } else {
