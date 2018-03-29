@@ -20,7 +20,7 @@ public class SolutionTest {
     expect.next.next = new ListNode(8);
 
     Solution solution = new Solution();
-    assertEquals(solution.addTwoNumbers(l1, l2), expect);
+    assertEquals(expect, solution.addTwoNumbers(l1, l2));
   }
 
   @Test
@@ -33,7 +33,7 @@ public class SolutionTest {
 
     Solution solution = new Solution();
 
-    assertEquals(solution.addTwoNumbers(l1, l2), expect);
+    assertEquals(expect, solution.addTwoNumbers(l1, l2));
   }
 
   @Test
@@ -46,7 +46,7 @@ public class SolutionTest {
     ListNode expect = new ListNode(0);
     expect.next = new ListNode(1);
 
-    assertEquals(solution.addTwoNumbers(l1, l2), expect);
+    assertEquals(expect, solution.addTwoNumbers(l1, l2));
   }
 
   @Test
@@ -62,6 +62,6 @@ public class SolutionTest {
 
     Solution solution = new Solution();
 
-    assertEquals(solution.addTwoNumbers(l1, l2), expect);
+    assertEquals(expect, solution.addTwoNumbers(l1, l2));
   }
 }
