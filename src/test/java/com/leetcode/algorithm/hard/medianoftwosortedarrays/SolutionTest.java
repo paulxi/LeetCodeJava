@@ -44,13 +44,13 @@ public class SolutionTest {
   public void testFindMedianSortedArraysCase6() {
     Solution solution = new Solution();
 
-    assertEquals(1., solution.findMedianSortedArrays(new int[0], new int[]{1}));
+    assertEquals(1.0, solution.findMedianSortedArrays(new int[0], new int[]{1}));
   }
 
   @Test
   public void testFindMedianSortedArraysCase7() {
     Solution solution = new Solution();
 
-    assertEquals(0., solution.findMedianSortedArrays(new int[0], new int[0]));
+    assertEquals(0.0, solution.findMedianSortedArrays(new int[0], new int[0]));
   }
 }
