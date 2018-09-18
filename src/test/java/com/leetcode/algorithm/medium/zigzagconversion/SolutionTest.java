@@ -12,7 +12,7 @@ public class SolutionTest {
   }
 
   @Test
-  public void testZigZagConversionPAYPALISHIRING() {
+  public void testZigZagConversion() {
     Solution solution = new Solution();
     assertEquals("PAHNAPLSIIGYIR", solution.convert("PAYPALISHIRING", 3));
   }
