@@ -1,7 +1,5 @@
 package com.leetcode.algorithm.easy.reverseinteger;
 
-import java.util.ArrayList;
-
 public class Solution {
   /**
    * Given a 32-bit signed integer, reverse digits of an integer.
