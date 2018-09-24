@@ -5,8 +5,8 @@ import java.util.HashMap;
 class LRUCache {
 
   private static class DLinkedNode {
-    public int key;
-    public int value;
+    int key;
+    int value;
     DLinkedNode pre;
     DLinkedNode post;
   }
