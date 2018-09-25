@@ -3,7 +3,7 @@ package com.leetcode.algorithm.easy.validparentheses;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Solution {
+class Solution {
   private HashMap<Character, Character> mappings;
 
   public Solution() {
