@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class IntegerToEnglishWordsTest {
+public class SolutionTest {
   @Test
   public void testCase1() {
     Solution solution = new Solution();

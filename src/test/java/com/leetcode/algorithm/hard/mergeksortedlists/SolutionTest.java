@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.leetcode.algorithm.common.ListNode;
 import org.junit.jupiter.api.Test;
 
-public class MergekSortedListsTest {
+public class SolutionTest {
   @Test
   public void testMatchingCase1() {
     Solution solution = new Solution();
