@@ -1,5 +1,7 @@
 package com.leetcode.algorithm.medium.addtwonumbers;
 
+import com.leetcode.algorithm.common.ListNode;
+
 class Solution {
 
   /**
