@@ -2,7 +2,7 @@ package com.leetcode.algorithm.hard.trappingrainwater;
 
 class Solution {
   public int trap(int[] height) {
-    if (height.length == 0) {
+    if (height.length <= 1) {
       return 0;
     }
 
@@ -19,7 +19,7 @@ class Solution {
     }
 
     int result = 0;
-    for (int i = 0; i < height.length - 1; i++) {
+    for (int i = 1; i < height.length - 1; i++) {
       result += Math.min(leftMax[i], rightMax[i]) - height[i];
     }
 
