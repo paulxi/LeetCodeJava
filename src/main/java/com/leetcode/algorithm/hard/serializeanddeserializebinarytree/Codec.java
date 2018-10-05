@@ -53,8 +53,8 @@ public class Codec {
     if (str.charAt(str.length() - 1) == ']') {
       str = str.substring(0, str.length() - 1);
     }
-    String[] data_array = str.split(",");
-    List<String> data_list = new LinkedList<>(Arrays.asList(data_array));
-    return rdeserialize(data_list);
+    String[] dataArray = str.split(",");
+    List<String> dataList = new LinkedList<>(Arrays.asList(dataArray));
+    return rdeserialize(dataList);
   }
 }
