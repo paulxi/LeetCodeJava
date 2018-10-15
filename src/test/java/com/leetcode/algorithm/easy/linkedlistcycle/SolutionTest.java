@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.leetcode.algorithm.common.ListNode;
 import org.junit.jupiter.api.Test;
 
-public class SolutionSpec {
+public class SolutionTest {
   @Test
   public void testShouldReturnFalse() {
     Solution solution = new Solution();
