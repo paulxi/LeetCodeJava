@@ -1,5 +1,7 @@
 package com.leetcode.algorithm.medium.mergeintervals;
 
+import com.leetcode.algorithm.common.Interval;
+
 import java.util.LinkedList;
 import java.util.List;
 
