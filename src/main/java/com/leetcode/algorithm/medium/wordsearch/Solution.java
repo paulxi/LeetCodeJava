@@ -33,11 +33,11 @@ class Solution {
     }
 
     visited[row][column] = true;
-    if (c == board[row][column]) {
-      return search(board, word, row - 1, column, index + 1, visited)
-          || search(board, word, row + 1, column, index + 1, visited)
-          || search(board, word, row, column - 1, index + 1, visited)
-          || search(board, word, row, column + 1, index + 1, visited);
+    if (search(board, word, row - 1, column, index + 1, visited)
+        || search(board, word, row + 1, column, index + 1, visited)
+        || search(board, word, row, column - 1, index + 1, visited)
+        || search(board, word, row, column + 1, index + 1, visited)) {
+       return true;
     }
     visited[row][column] = false;
     return false;
