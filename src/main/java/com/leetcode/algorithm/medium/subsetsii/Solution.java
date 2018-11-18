@@ -1,10 +1,12 @@
 package com.leetcode.algorithm.medium.subsetsii;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Solution {
   public List<List<Integer>> subsetsWithDup(int[] nums) {
+    Arrays.sort(nums);
     List<List<Integer>> result = new ArrayList<>();
     result.add(new ArrayList<>());
 
