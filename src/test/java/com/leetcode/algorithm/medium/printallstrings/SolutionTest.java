@@ -1,13 +1,16 @@
-package com.leetcode.algorithm.hard.trappingrainwater;
+package com.leetcode.algorithm.medium.printallstrings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class SolutionTest {
   @Test
   public void testCase1() {
     Solution solution = new Solution();
-    assertEquals(6, solution.trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+    assertEquals(Arrays.asList("abcdfgh", "abcdfij", "abcefgh", "abcefij"),
+        solution.allStrings("abc{d,e}f{gh,ij}"));
   }
 }
