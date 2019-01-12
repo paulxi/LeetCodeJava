@@ -26,19 +26,34 @@ class Solution {
 //    return result;
 //  }
 
+//  public List<List<Integer>> subsets(int[] nums) {
+//    ArrayList<List<Integer>> result = new ArrayList<>();
+//    result.add(new ArrayList<>());
+//
+//    for (int n : nums) {
+//      int size = result.size();
+//      for (int i = 0; i < size; i++) {
+//        List<Integer> subset = new ArrayList<>(result.get(i));
+//        subset.add(n);
+//        result.add(subset);
+//      }
+//    }
+//
+//    return result;
+//  }
+
   public List<List<Integer>> subsets(int[] nums) {
-    ArrayList<List<Integer>> result = new ArrayList<>();
-    result.add(new ArrayList<>());
-
-    for (int n : nums) {
-      int size = result.size();
-      for (int i = 0; i < size; i++) {
-        List<Integer> subset = new ArrayList<>(result.get(i));
-        subset.add(n);
-        result.add(subset);
-      }
-    }
-
+    List<List<Integer>> result = new ArrayList<>();
+    helper(result, new ArrayList<>(), nums, 0);
     return result;
+  }
+
+  private void helper(List<List<Integer>> result, List<Integer> temp, int[] nums, int start) {
+    result.add(new ArrayList<>(temp));
+    for (int i = start; i < nums.length; i++) {
+      temp.add(nums[i]);
+      helper(result, temp, nums, i + 1);
+      temp.remove(temp.size() - 1);
+    }
   }
 }
