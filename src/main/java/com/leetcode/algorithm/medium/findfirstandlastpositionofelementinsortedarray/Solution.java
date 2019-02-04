@@ -2,53 +2,29 @@ package com.leetcode.algorithm.medium.findfirstandlastpositionofelementinsorteda
 
 class Solution {
   public int[] searchRange(int[] nums, int target) {
-    return searchRange(nums, target, 0, nums.length - 1);
-  }
-
-  public int[] searchRange(int[] nums, int target, int low, int high) {
-    if (low > high) {
+    int first = findFirst(nums, target);
+    if (first == nums.length || nums[first] != target) {
       return new int[] {-1, -1};
     }
 
-    int mid = low + (high - low) / 2;
-    if (nums[mid] == target) {
-      int[] lowRange;
-      if (nums[low] == target) {
-        if (low < mid) {
-          lowRange = new int[] {low, mid - 1};
-        } else {
-          lowRange = new int[] {low, low};
-        }
+    int end = findFirst(nums, target + 1);
+    return new int[] {first, end - 1};
+  }
+
+  private int findFirst(int[] nums, int target) {
+    int lo = 0;
+    int hi = nums.length;
+
+    while (lo < hi) {
+      int mid = lo + (hi - lo) / 2;
+
+      if (nums[mid] < target) {
+        lo = mid + 1;
       } else {
-        lowRange = searchRange(nums, target, low, mid - 1);
+        hi = mid;
       }
-
-      int[] highRange;
-      if (nums[high] == target) {
-        if (high > mid) {
-          highRange = new int[] {mid + 1, high};
-        } else {
-          highRange = new int[] {high, high};
-        }
-      } else {
-        highRange = searchRange(nums, target, mid + 1, high);
-      }
-
-      int[] result = new int[2];
-      result[0] = mid;
-      result[1] = mid;
-
-      if (lowRange[0] != -1) {
-        result[0] = lowRange[0];
-      }
-      if (highRange[0] != -1) {
-        result[1] = highRange[1];
-      }
-      return result;
-    } else if (nums[mid] > target) {
-      return searchRange(nums, target, low, mid - 1);
-    } else {
-      return searchRange(nums, target, mid + 1, high);
     }
+
+    return lo;
   }
 }
