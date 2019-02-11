@@ -2,15 +2,16 @@ package com.leetcode.algorithm.easy.validperfectsquare;
 
 class Solution {
   public boolean isPerfectSquare(int num) {
-    int i = 1;
-    while (true) {
-      int value = i * i;
-      if (value == num) {
+    int lo = 1;
+    int hi = num;
+    while (lo <= hi) {
+      long mid = lo + (hi - lo) / 2;
+      if (mid * mid == num) {
         return true;
-      } else if (value < 0 || value > num) {
-        break;
+      } else if (mid * mid < num) {
+        lo = (int) mid + 1;
       } else {
-        i++;
+        hi = (int) mid - 1;
       }
     }
 
