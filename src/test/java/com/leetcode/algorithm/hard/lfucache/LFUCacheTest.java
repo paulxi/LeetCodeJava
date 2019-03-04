@@ -19,4 +19,20 @@ public class LFUCacheTest {
     assertEquals(3, cache.get(3));        // returns 3
     assertEquals(4, cache.get(4));       // returns 4
   }
+
+  @Test
+  public void testCase2() {
+    LFUCache cache = new LFUCache(3);
+    cache.put(2, 2);
+    cache.put(1, 1);
+    cache.get(2);
+    cache.get(1);
+    cache.get(2);
+    cache.put(3, 3);
+    cache.put(4, 4);
+    cache.get(3);
+    cache.get(2);
+    cache.get(1);
+    cache.get(4);
+  }
 }

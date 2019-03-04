@@ -3,65 +3,81 @@ package com.leetcode.algorithm.hard.palindromepairs;
 import java.util.*;
 
 class Solution {
-//  public List<List<Integer>> palindromePairs(String[] words) {
-//    ArrayList<List<Integer>> result = new ArrayList<>();
-//    for (int i = 0; i < words.length; i++) {
-//      for (int j = 0; j < words.length; j++) {
-//        if (i != j && isPalindrome(words[i], words[j])) {
-//          result.add(Arrays.asList(i, j));
-//        }
-//      }
-//    }
-//
-//    return result;
-//  }
-//
-  private boolean isPalindrome(String str) {
+  private static class Trie {
+    Trie[] next;
+    int index;
+    List<Integer> list;
+
+    Trie() {
+      next = new Trie[26];
+      index = -1;
+      list = new ArrayList<>();
+    }
+  }
+
+
+  private boolean isPalindrome(String str, int i, int j) {
     char[] arr = str.toCharArray();
-    int low = 0;
-    int high = arr.length - 1;
-    while (low < high) {
-      if (arr[low] != arr[high]) {
+    while (i < j) {
+      if (arr[i] != arr[j]) {
         return false;
       }
-      low += 1;
-      high -= 1;
+      i++;
+      j--;
     }
-
     return true;
   }
 
   public List<List<Integer>> palindromePairs(String[] words) {
-    Map<String, Integer> map = new HashMap<>();
+    List<List<Integer>> ans = new ArrayList<>();
+    Trie root = new Trie();
     for (int i = 0; i < words.length; i++) {
-      map.put(words[i], i);
+      addWord(root, words[i], i);
     }
 
-    Set<List<Integer>> set = new HashSet<>();
     for (int i = 0; i < words.length; i++) {
-      String word = words[i];
-      for (int j = 0; j <= word.length(); j++) {
-        String prefix = word.substring(0, j);
-        String suffix = word.substring(j);
+      search(words, i, root, ans);
+    }
 
-        if (isPalindrome(prefix)) {
-          String rev = new StringBuilder(suffix).reverse().toString();
-          if (map.containsKey(rev) && map.get(rev) != i) {
-            set.add(Arrays.asList(map.get(rev), i));
-          }
-        }
 
-        if (isPalindrome(suffix)) {
-          String rev = new StringBuilder(prefix).reverse().toString();
-          if (map.containsKey(rev) && map.get(rev) != i) {
-            set.add(Arrays.asList(i, map.get(rev)));
-          }
-        }
+    return ans;
+  }
+
+  private void addWord(Trie t, String word, int index) {
+    Trie curr = t;
+    for (int i = word.length() - 1; i >= 0; i--) {
+      int j = word.charAt(i) - 'a';
+      if (curr.next[j] == null) {
+        curr.next[j] = new Trie();
+      }
+
+      if (isPalindrome(word, 0, i)) {
+        curr.list.add(index);
+      }
+      curr = curr.next[j];
+    }
+
+    curr.list.add(index);
+    curr.index = index;
+  }
+
+  private void search(String[] words, int i, Trie t, List<List<Integer>> ans) {
+    Trie curr = t;
+    for (int j = 0; j < words[i].length(); j++) {
+      if (curr.index >= 0 && curr.index != i && isPalindrome(words[i], j, words[i].length() - 1)) {
+        ans.add(Arrays.asList(i, curr.index));
+      }
+      curr = curr.next[words[i].charAt(j) - 'a'];
+      if (curr == null) {
+        return;
       }
     }
 
-
-    List<List<Integer>> result = new ArrayList<>(set);
-    return result;
+    for (int j : curr.list) {
+      if (i == j) {
+        continue;
+      }
+      ans.add(Arrays.asList(i, j));
+    }
   }
 }
