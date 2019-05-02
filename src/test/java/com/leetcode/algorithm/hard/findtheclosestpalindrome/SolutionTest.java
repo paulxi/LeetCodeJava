@@ -10,4 +10,10 @@ public class SolutionTest {
     Solution solution = new Solution();
     assertEquals("121", solution.nearestPalindromic("123"));
   }
+
+  @Test
+  public void testCase2() {
+    Solution solution = new Solution();
+    assertEquals("99", solution.nearestPalindromic("100"));
+  }
 }

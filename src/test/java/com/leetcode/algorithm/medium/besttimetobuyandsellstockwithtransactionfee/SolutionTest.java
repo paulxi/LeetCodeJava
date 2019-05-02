@@ -8,6 +8,6 @@ public class SolutionTest {
   @Test
   public void testCase1() {
     Solution solution = new Solution();
-    assertEquals(3, solution.maxProfit(new int[] {1, 3, 2, 8, 4, 9}, 2));
+    assertEquals(8, solution.maxProfit(new int[] {1, 3, 2, 8, 4, 9}, 2));
   }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class SolutionTest {
   @Test
-  public void testShouldReturnFalse() {
+  public void testCase1() {
     Solution solution = new Solution();
 
     ListNode listNode = new ListNode(1);
@@ -20,7 +20,7 @@ public class SolutionTest {
   }
 
   @Test
-  public void testShouldReturnTrue() {
+  public void testCase2() {
     Solution solution = new Solution();
 
     ListNode listNode = new ListNode(1);
