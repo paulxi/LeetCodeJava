@@ -1,5 +1,9 @@
 package com.leetcode.algorithm.medium.longestincreasingsubsequence;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class Solution {
 //  public int lengthOfLIS(int[] nums) {
 //    int n = nums.length;
@@ -51,5 +55,54 @@ class Solution {
     }
 
     return size;
+  }
+
+  public int[] arrayOfLIS(int[] nums) {
+    int n = nums.length;
+    if (n == 0) {
+      return new int[0];
+    }
+
+    int[] prevs = new int[n];
+    Arrays.fill(prevs, -1);
+    int[] tails = new int[n];
+    int size = 0;
+    for (int k = 0; k < n; k++) {
+      int x = nums[k];
+      int i = 0;
+      int j = size;
+
+      while (i != j) {
+        int m = (i + j) / 2;
+        if (nums[tails[m]] < x) {
+          i = m + 1;
+        } else {
+          j = m;
+        }
+      }
+
+      tails[i] = k;
+      if (i == size) {
+        size++;
+      }
+
+      if (i > 0) {
+        prevs[tails[i]] = tails[i - 1];
+      }
+    }
+
+    List<Integer> list = new ArrayList<>();
+    int index = tails[size - 1];
+    while (index != -1) {
+      list.add(0, nums[index]);
+      index = prevs[index];
+    }
+
+    int[] ans = new int[list.size()];
+    for (int i = 0; i < ans.length; i++) {
+      ans[i] = list.get(i);
+    }
+
+    return ans;
   }
 }
