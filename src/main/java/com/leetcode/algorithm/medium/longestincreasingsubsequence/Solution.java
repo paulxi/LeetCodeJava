@@ -63,31 +63,34 @@ class Solution {
       return new int[0];
     }
 
+    int size = 0;
+    int[] tails = new int[n];
     int[] prevs = new int[n];
     Arrays.fill(prevs, -1);
-    int[] tails = new int[n];
-    int size = 0;
-    for (int k = 0; k < n; k++) {
-      int x = nums[k];
-      int i = 0;
-      int j = size;
 
-      while (i != j) {
-        int m = (i + j) / 2;
-        if (nums[tails[m]] < x) {
-          i = m + 1;
+    for (int i = 0; i < n; i++) {
+      int x = nums[i];
+
+      int lo = 0;
+      int hi = size;
+
+      while (lo < hi) {
+        int mid = lo + (hi - lo) / 2;
+        int value = nums[tails[mid]];
+        if (x > value) {
+          lo = mid + 1;
         } else {
-          j = m;
+          hi = mid;
         }
       }
 
-      tails[i] = k;
-      if (i == size) {
+      tails[lo] = i;
+      if (lo == size) {
         size++;
       }
 
-      if (i > 0) {
-        prevs[tails[i]] = tails[i - 1];
+      if (lo > 0) {
+        prevs[tails[lo]] = tails[lo - 1];
       }
     }
 
