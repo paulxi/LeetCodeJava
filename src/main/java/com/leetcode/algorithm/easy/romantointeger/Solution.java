@@ -1,42 +1,32 @@
 package com.leetcode.algorithm.easy.romantointeger;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
   public int romanToInt(String s) {
-    return convert(0, s);
-  }
+    if (s.length() == 0) {
+      return 0;
+    }
 
-  private int convert(int sum, String str) {
-    int length = str.length();
-    if (length == 0) {
-      return sum;
-    } else if (length == 1) {
-      return sum + getValue(str);
-    } else {
-      String twoChars = str.substring(0, 2);
-      String restStr = str.substring(2);
-      switch (twoChars) {
-        case "IV": return convert(4 + sum, restStr);
-        case "IX": return convert(9 + sum, restStr);
-        case "XL": return convert(40 + sum, restStr);
-        case "XC": return convert(90 + sum, restStr);
-        case "CD": return convert(400 + sum, restStr);
-        case "CM": return convert(900 + sum, restStr);
-        default: return convert(sum + getValue(str.substring(0, 1)), str.substring(1));
+    Map<Character, Integer> map = new HashMap<>();
+    map.put('I', 1);
+    map.put('V', 5);
+    map.put('X', 10);
+    map.put('L', 50);
+    map.put('C', 100);
+    map.put('D', 500);
+    map.put('M', 1000);
+
+    int ans = map.get(s.charAt(s.length() - 1));
+    for (int i = s.length() - 2; i >= 0; i--) {
+      if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+        ans -= map.get(s.charAt(i));
+      } else {
+        ans += map.get(s.charAt(i));
       }
     }
-  }
 
-  private int getValue(String singleCharStr) {
-    switch (singleCharStr) {
-      case "I": return 1;
-      case "V": return 5;
-      case "X": return 10;
-      case "L": return 50;
-      case "C": return 100;
-      case "D": return 500;
-      case "M": return 1000;
-      default: return 0;
-    }
+    return ans;
   }
-
 }

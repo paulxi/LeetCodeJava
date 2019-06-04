@@ -8,11 +8,11 @@ class Solution {
 
     int m = matrix.length;
     int n = matrix[0].length;
-    int[][] cahche = new int[m][n];
+    int[][] cache = new int[m][n];
     int ans = 0;
     for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
-        ans = Math.max(ans, dfs(matrix, i, j, m, n, cahche));
+        ans = Math.max(ans, dfs(matrix, i, j, m, n, cache));
       }
     }
 
