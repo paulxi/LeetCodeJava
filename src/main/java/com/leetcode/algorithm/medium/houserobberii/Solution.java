@@ -14,15 +14,14 @@ class Solution {
   }
 
   private int rob(int[] nums, int lo, int hi) {
-    int include = 0;
-    int exclude = 0;
-    for (int j = lo; j <= hi; j++) {
-      int i = include;
-      int e = exclude;
-      include = e + nums[j];
-      exclude = Math.max(e, i);
+    int currMax = 0;
+    int prevMax = 0;
+    for (int i = lo; i <= hi; i++) {
+      int temp = currMax;
+      currMax = Math.max(prevMax + nums[i], currMax);
+      prevMax = temp;
     }
 
-    return Math.max(include, exclude);
+    return currMax;
   }
 }
