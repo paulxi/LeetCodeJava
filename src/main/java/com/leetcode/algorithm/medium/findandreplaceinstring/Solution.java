@@ -1,7 +1,6 @@
 package com.leetcode.algorithm.medium.findandreplaceinstring;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 class Solution {
   public String findReplaceString(String s, int[] indexes, String[] sources, String[] targets) {
@@ -27,5 +26,24 @@ class Solution {
     }
 
     return sb.toString();
+  }
+
+  public String findReplaceString2(String s, int[] indexes, String[] sources, String[] targets) {
+    List<int[]> list = new ArrayList<>();
+    for (int i = 0; i < indexes.length; i++) {
+      list.add(new int[] {indexes[i], i});
+    }
+    Collections.sort(list, (a, b) -> a[0] - b[0]);
+
+    for (int i = list.size() - 1; i >= 0; i--) {
+      int[] item = list.get(i);
+      int index = item[0];
+      String src = sources[item[1]];
+      if (s.substring(index, index + src.length()).equals(src)) {
+        s = s.substring(0, index) + targets[item[1]] + s.substring(index + src.length());
+      }
+    }
+
+    return s;
   }
 }

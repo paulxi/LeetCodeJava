@@ -25,28 +25,22 @@ class Solution {
 //  }
 
   public int jump(int[] nums) {
-    int n = nums.length;
-    if (n < 2) {
-      return 0;
-    }
+    int curEnd = 0;
+    int furtherEnd = 0;
+    int ans = 0;
 
-    int level = 0;
-    int i = 0;
-    int currentMax = 0;
-    int nextMax = 0;
+    for (int i = 0; i < nums.length - 1; i++) {
+      furtherEnd = Math.max(furtherEnd, i + nums[i]);
+      if (i == curEnd) {
+        curEnd = furtherEnd;
+        ans++;
 
-    while (currentMax - i + 1 > 0) {
-      level++;
-
-      for (; i <= currentMax; i++) {
-        nextMax = Math.max(nextMax, nums[i] + i);
-        if (nextMax >= n - 1) {
-          return level;
+        if (curEnd >= nums.length - 1) {
+          break;
         }
       }
-      currentMax = nextMax;
     }
 
-    return 0;
+    return ans;
   }
 }

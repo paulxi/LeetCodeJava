@@ -8,50 +8,30 @@ class Solution {
       return head;
     }
 
-    ListNode curr = head;
-    ListNode ansHead = null;
-    ListNode ansCurr = null;
-    while (curr != null) {
-      ListNode ptr = curr;
-
-      int count = 0;
-
-      while (curr != null && count != k) {
-        curr = curr.next;
-        count += 1;
-      }
-
-      if (count == k) {
-        ListNode prev = null;
-        while (count > 0) {
-          ListNode temp = ptr.next;
-          ptr.next = prev;
-          prev = ptr;
-          ptr = temp;
-
-          count -= 1;
-        }
-
-        if (ansHead != null) {
-          ansCurr.next = prev;
-        } else {
-          ansHead = prev;
-          ansCurr = ansHead;
-        }
-      } else {
-        if (ansHead != null) {
-          ansCurr.next = ptr;
-        } else {
-          ansHead = ptr;
-          ansCurr = ansHead;
-        }
-      }
-
-      while (ansCurr.next != null) {
-        ansCurr = ansCurr.next;
-      }
+    ListNode node = head;
+    int count = 0;
+    while (node != null) {
+      node = node.next;
+      count++;
     }
 
-    return ansHead;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+
+    ListNode prev = dummy;
+    while (count >= k) {
+      ListNode curr = prev.next;
+      ListNode next = curr.next;
+      for (int i = 1; i < k; i++) {
+        curr.next = next.next;
+        next.next = prev.next;
+        prev.next = next;
+        next = curr.next;
+      }
+      prev = curr;
+      count -= k;
+    }
+
+    return dummy.next;
   }
 }

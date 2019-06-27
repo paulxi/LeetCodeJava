@@ -7,42 +7,13 @@ import java.util.List;
 
 class Solution {
   public int findSecondMinimumValue(TreeNode root) {
-    if (root == null) {
+    if (root == null || root.left == null) {
       return -1;
     }
-    int min = root.val;
-    int secondMin = -1;
-    List<TreeNode> list = new ArrayList<>();
-    list.add(root);
 
-    while (!list.isEmpty()) {
-      List<TreeNode> children = new ArrayList<>();
+    int l = root.left.val == root.val ?  findSecondMinimumValue(root.left) : root.left.val;
+    int r = root.right.val == root.val ? findSecondMinimumValue(root.right) : root.right.val;
 
-      for (TreeNode node: list) {
-        if (node.left != null) {
-          if (node.left.val != min && (node.left.val < secondMin || secondMin == -1)) {
-            secondMin = node.left.val;
-          }
-
-          if (node.left.val == min) {
-            children.add(node.left);
-          }
-        }
-
-        if (node.right != null) {
-          if (node.right.val != min && (node.right.val < secondMin || secondMin == -1)) {
-            secondMin = node.right.val;
-          }
-
-          if (node.right.val == min) {
-            children.add(node.right);
-          }
-        }
-      }
-
-      list = children;
-    }
-
-    return secondMin;
+    return l == -1 || r == -1 ? Math.max(l, r) : Math.min(l, r);
   }
 }

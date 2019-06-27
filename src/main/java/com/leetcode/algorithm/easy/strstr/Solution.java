@@ -23,6 +23,7 @@ class Solution {
       return 0;
     }
 
+    int[] table = generateTable(needle);
     int[] next = generateNext(needle);
 
     int lenH = haystack.length();
@@ -41,6 +42,28 @@ class Solution {
     }
 
     return -1;
+  }
+
+  private int[] generateTable(String p) {
+    int len = p.length();
+    int[] table = new int[len];
+    int i = 1;
+    int j = 0;
+    while (i < len) {
+      if (p.charAt(i) == p.charAt(j)) {
+        table[i] = j + 1;
+        i++;
+        j++;
+      } else {
+        if (j > 0) {
+          j = table[j - 1];
+        } else {
+          i++;
+        }
+      }
+    }
+
+    return table;
   }
 
   private int[] generateNext(String p) {

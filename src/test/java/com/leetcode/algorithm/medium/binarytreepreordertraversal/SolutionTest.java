@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.medium.binarytreeinordertraversal;
+package com.leetcode.algorithm.medium.binarytreepreordertraversal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +15,7 @@ public class SolutionTest {
     TreeNode root = new TreeNode(1);
     root.right = new TreeNode(2);
     root.right.left = new TreeNode(3);
-    assertEquals(Arrays.asList(1, 3, 2), solution.inorderTraversal(root));
+    assertEquals(Arrays.asList(1, 2, 3), solution.preorderTraversal(root));
   }
 
   @Test
@@ -24,6 +24,15 @@ public class SolutionTest {
     TreeNode root = new TreeNode(1);
     root.right = new TreeNode(2);
     root.right.left = new TreeNode(3);
-    assertEquals(Arrays.asList(1, 3, 2), solution.inorderTraversal2(root));
+    assertEquals(Arrays.asList(1, 2, 3), solution.preorderTraversal2(root));
+  }
+
+  @Test
+  public void testCase3() {
+    Solution solution = new Solution();
+    TreeNode root = new TreeNode(1);
+    root.right = new TreeNode(2);
+    root.right.left = new TreeNode(3);
+    assertEquals(Arrays.asList(1, 2, 3), solution.preorderTraversal3(root));
   }
 }
