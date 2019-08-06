@@ -3,6 +3,9 @@ package com.leetcode.algorithm.medium.circulararrayloop;
 class Solution {
   public boolean circularArrayLoop(int[] nums) {
     int n = nums.length;
+    if (n < 2) {
+      return false;
+    }
 
     for (int i = 0; i < n; i++) {
       if (nums[i] == 0) {

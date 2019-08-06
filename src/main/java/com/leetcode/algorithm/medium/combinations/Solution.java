@@ -13,6 +13,7 @@ class Solution {
   private void helper(List<List<Integer>> ans, List<Integer> list, int n, int k, int start) {
     if (list.size() == k) {
       ans.add(new ArrayList<>(list));
+      return;
     }
 
     for (int i = start; i < n; i++) {

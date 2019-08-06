@@ -12,4 +12,12 @@ public class SolutionTest {
         {5, 4}, {6, 4}, {6, 7}, {2, 3}
     }));
   }
+
+  @Test
+  public void testCase2() {
+    Solution solution = new Solution();
+    assertEquals(3, solution.maxEnvelopes2(new int[][] {
+        {5, 4}, {6, 4}, {6, 7}, {2, 3}
+    }));
+  }
 }

@@ -29,4 +29,28 @@ public class SolutionTest {
     Solution solution = new Solution();
     assertEquals(3, solution.kthSmallest(root, 3));
   }
+
+  @Test
+  public void testCase3() {
+    TreeNode root = new TreeNode(3);
+    root.left = new TreeNode(1);
+    root.left.right = new TreeNode(2);
+    root.right = new TreeNode(4);
+
+    Solution solution = new Solution();
+    assertEquals(1, solution.kthSmallest2(root, 1));
+  }
+
+  @Test
+  public void testCase4() {
+    TreeNode root = new TreeNode(5);
+    root.left = new TreeNode(3);
+    root.left.left = new TreeNode(2);
+    root.left.left.left = new TreeNode(1);
+    root.left.right = new TreeNode(4);
+    root.right = new TreeNode(6);
+
+    Solution solution = new Solution();
+    assertEquals(3, solution.kthSmallest2(root, 3));
+  }
 }

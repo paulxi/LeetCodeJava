@@ -41,4 +41,24 @@ class Solution {
       return false;
     }
   }
+
+  public boolean isSubtree2(TreeNode s, TreeNode t) {
+    StringBuilder sbs = new StringBuilder();
+    StringBuilder sbt = new StringBuilder();
+    preOrder(s, sbs);
+    preOrder(t, sbt);
+
+    return sbs.toString().indexOf(sbt.toString()) >= 0;
+  }
+
+  private void preOrder(TreeNode node, StringBuilder sb) {
+    if (node == null) {
+      sb.append(",null");
+      return;
+    }
+
+    sb.append("," + node.val);
+    preOrder(node.left, sb);
+    preOrder(node.right, sb);
+  }
 }

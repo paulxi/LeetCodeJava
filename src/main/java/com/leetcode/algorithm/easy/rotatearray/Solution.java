@@ -2,16 +2,6 @@ package com.leetcode.algorithm.easy.rotatearray;
 
 class Solution {
 //  public void rotate(int[] nums, int k) {
-//    int[] a = new int[nums.length];
-//    for (int i = 0; i < nums.length; i++) {
-//      a[(i + k) % nums.length] = nums[i];
-//    }
-//    for (int i = 0; i < nums.length; i++) {
-//      nums[i] = a[i];
-//    }
-//  }
-
-//  public void rotate(int[] nums, int k) {
 //    k %= nums.length;
 //    reverse(nums, 0, nums.length - 1);
 //    reverse(nums, 0, k - 1);

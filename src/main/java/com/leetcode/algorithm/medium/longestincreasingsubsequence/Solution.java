@@ -77,7 +77,7 @@ class Solution {
       while (lo < hi) {
         int mid = lo + (hi - lo) / 2;
         int value = nums[tails[mid]];
-        if (x > value) {
+        if (value < x) {
           lo = mid + 1;
         } else {
           hi = mid;

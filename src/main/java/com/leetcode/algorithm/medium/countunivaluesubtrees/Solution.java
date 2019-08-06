@@ -18,7 +18,7 @@ class Solution {
     boolean left = helper(node.left);
     boolean right = helper(node.right);
 
-    if (left == right) {
+    if (left && right) {
       if (node.left != null && node.left.val != node.val) {
         return false;
       }

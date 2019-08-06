@@ -2,37 +2,29 @@ package com.leetcode.algorithm.easy.shortestunsortedcontinuoussubarray;
 
 class Solution {
   public int findUnsortedSubarray(int[] nums) {
-    int low = 0;
-    int high = nums.length - 1;
+    int end = -1;
+    int max = Integer.MIN_VALUE;
 
-    while (low < high) {
-      boolean isLowMin = true;
-      for (int i = low + 1; i <= high; i++) {
-        if (nums[i] < nums[low]) {
-          isLowMin = false;
-          break;
-        }
-      }
-      if (isLowMin) {
-        low++;
-      }
-
-      boolean isHighMax = true;
-      for (int i = high - 1; i >= low; i--) {
-        if (nums[i] > nums[high]) {
-          isHighMax = false;
-          break;
-        }
-      }
-      if (isHighMax) {
-        high--;
-      }
-
-      if (!isLowMin && !isHighMax) {
-        break;
+    for (int i = 0; i < nums.length; i++) {
+      max = Math.max(max, nums[i]);
+      if (max > nums[i]) {
+        end = i;
       }
     }
 
-    return high == low ? 0 : high - low + 1;
+    int start = -1;
+    int min = Integer.MAX_VALUE;
+    for (int i = nums.length - 1; i >= 0; i--) {
+      min = Math.min(min, nums[i]);
+      if (min < nums[i]) {
+        start = i;
+      }
+    }
+
+    if (start == -1) {
+      return 0;
+    }
+
+    return end - start + 1;
   }
 }

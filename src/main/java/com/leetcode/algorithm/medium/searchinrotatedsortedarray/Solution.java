@@ -2,35 +2,28 @@ package com.leetcode.algorithm.medium.searchinrotatedsortedarray;
 
 class Solution {
   public int search(int[] nums, int target) {
-    return search(nums, 0, nums.length - 1, target);
-  }
+    int lo = 0;
+    int hi = nums.length;
 
-  private int search(int[] nums, int low, int high, int target) {
-    if (low <= high) {
-      int mid = low + (high - low) / 2;
-      if (target == nums[mid]) {
+    while (lo < hi) {
+      int mid = lo + (hi - lo) / 2;
+      if (nums[mid] == target) {
         return mid;
-      }
-
-      boolean isLeftSorted = isSorted(nums, low, mid);
-      boolean isRightSorted = isSorted(nums, mid, high);
-      if (isLeftSorted && nums[low] <= target && target < nums[mid]) {
-        return search(nums, low, mid - 1, target);
-      } else if (isRightSorted && nums[mid] < target && target <= nums[high]) {
-        return search(nums, mid + 1, high, target);
-      } else {
-        if (isLeftSorted) {
-          return search(nums, mid + 1, high, target);
+      } else if (nums[mid] >= nums[lo]) {
+        if (target >= nums[lo] && nums[mid] > target) {
+          hi = mid;
         } else {
-          return search(nums, low, mid - 1, target);
+          lo = mid + 1;
+        }
+      } else {
+        if (target > nums[mid] && target < nums[lo]) {
+          lo = mid + 1;
+        } else {
+          hi = mid;
         }
       }
-    } else {
-      return -1;
     }
-  }
 
-  private boolean isSorted(int[] nums, int low, int high) {
-    return nums[low] < nums[high] || low == high;
+    return -1;
   }
 }

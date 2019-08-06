@@ -5,30 +5,21 @@ import java.util.List;
 
 class Solution {
   public List<String> summaryRanges(int[] nums) {
-    ArrayList<String> result = new ArrayList<>();
-    if (nums.length == 0) {
-      return result;
-    }
+    int n = nums.length;
+    List<String> ans = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+      int num = nums[i];
+      while (i < n - 1 && nums[i] + 1 == nums[i + 1]) {
+        i++;
+      }
 
-    if (nums.length == 1) {
-      result.add(Integer.toString(nums[0]));
-      return result;
-    }
-
-    int start = 0;
-    int end = 0;
-    while (end < nums.length) {
-      end += 1;
-      if (end == nums.length || nums[end] > 1 + nums[end - 1]) {
-        if (start == end - 1) {
-          result.add(Integer.toString(nums[start]));
-        } else {
-          result.add(nums[start] + "->" + nums[end - 1]);
-        }
-        start = end;
+      if (num != nums[i]) {
+        ans.add(num + "->" + nums[i]);
+      } else {
+        ans.add("" + num);
       }
     }
 
-    return result;
+    return ans;
   }
 }

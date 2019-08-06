@@ -4,6 +4,7 @@ import com.leetcode.algorithm.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class Solution {
 //  public int kthSmallest(TreeNode root, int k) {
@@ -45,5 +46,25 @@ class Solution {
       return;
     }
     visit(node.right);
+  }
+
+  public int kthSmallest2(TreeNode root, int k) {
+    Stack<TreeNode> stack = new Stack<>();
+    TreeNode curr = root;
+    while (!stack.isEmpty() || curr != null) {
+      if (curr != null) {
+        stack.push(curr);
+        curr = curr.left;
+      } else {
+        TreeNode node = stack.pop();
+        k--;
+        if (k == 0) {
+          return node.val;
+        }
+        curr = node.right;
+      }
+    }
+
+    return -1;
   }
 }

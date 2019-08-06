@@ -2,56 +2,69 @@ package com.leetcode.algorithm.medium.allnodesdistancekinbinarytree;
 
 import com.leetcode.algorithm.common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Solution {
   public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
     List<Integer> ans = new ArrayList<>();
-    dfs(root, target, k, ans);
+    if (k == 0) {
+      ans.add(target.val);
+      return ans;
+    }
+    Map<TreeNode, Set<TreeNode>> map = new HashMap<>();
+    preorder(null, root, map);
+
+    Set<TreeNode> visited = new HashSet<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(target);
+    visited.add(target);
+
+    while (!queue.isEmpty() && k > 0) {
+      int size = queue.size();
+      for (int i = 0; i < size; i++) {
+        TreeNode node = queue.poll();
+        Set<TreeNode> nei = map.get(node);
+        if (nei != null) {
+          for (TreeNode next: nei) {
+            if (visited.contains(next)) {
+              continue;
+            }
+
+            queue.offer(next);
+            visited.add(next);
+          }
+        }
+      }
+
+      k--;
+      if (k == 0) {
+        while (!queue.isEmpty()) {
+          ans.add(queue.poll().val);
+        }
+      }
+    }
+
     return ans;
   }
 
-  private int dfs(TreeNode node, TreeNode target, int k, List<Integer> ans) {
-    if (node == null) {
-      return -1;
-    }
-
-    if (node == target) {
-      subtree_add(node, 0, k, ans);
-      return 1;
-    } else {
-      int l = dfs(node.left, target, k, ans);
-      int r = dfs(node.right, target, k, ans);
-      if (l != -1) {
-        if (l == k) {
-          ans.add(node.val);
-        } else if (l < k) {
-          subtree_add(node.right, l + 1, k, ans);
-        }
-        return l + 1;
-      } else if (r != -1) {
-        if (r == k) {
-          ans.add(node.val);
-        } else if (r < k) {
-          subtree_add(node.left, r + 1, k, ans);
-        }
-        return r + 1;
-      } else {
-        return -1;
-      }
-    }
-  }
-
-  private void subtree_add(TreeNode node, int dist, int k, List<Integer> ans) {
-    if (node == null) {
+  private void preorder(TreeNode parent, TreeNode child, Map<TreeNode, Set<TreeNode>> map) {
+    if (child == null) {
       return;
     }
-    if (dist == k) {
-      ans.add(node.val);
-    } else {
-      subtree_add(node.left, dist + 1, k, ans);
-      subtree_add(node.right, dist + 1, k, ans);
+
+    if (parent != null && child != null) {
+      if (!map.containsKey(parent)) {
+        map.put(parent, new HashSet<>());
+      }
+      map.get(parent).add(child);
+
+      if (!map.containsKey(child)) {
+        map.put(child, new HashSet<>());
+      }
+      map.get(child).add(parent);
     }
+
+    preorder(child, child.left, map);
+    preorder(child, child.right, map);
   }
 }

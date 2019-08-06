@@ -16,4 +16,10 @@ public class SolutionTest {
     Solution solution = new Solution();
     assertEquals(false, solution.circularArrayLoop(new int[] {-1, 2}));
   }
+
+  @Test
+  public void testCase3() {
+    Solution solution = new Solution();
+    assertEquals(false, solution.circularArrayLoop(new int[] {-1}));
+  }
 }

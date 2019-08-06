@@ -12,22 +12,20 @@ class Solution {
     Set<Character> vowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
 
     while (low < high) {
-      char lowChar = arr[low];
-      char highChar = arr[high];
+      while (low < high && !vowels.contains(arr[low])) {
+        low++;
+      }
 
-      if (vowels.contains(lowChar) && vowels.contains(highChar)) {
-        char temp = lowChar;
-        arr[low] = highChar;
+      while (low < high && !vowels.contains(arr[high])) {
+        high--;
+      }
+
+      if (low < high) {
+        char temp = arr[low];
+        arr[low] = arr[high];
         arr[high] = temp;
-        low += 1;
-        high -= 1;
-      } else if (!vowels.contains(lowChar) && !vowels.contains(highChar)) {
-        low += 1;
-        high -= 1;
-      } else if (!vowels.contains(lowChar)) {
-        low += 1;
-      } else {
-        high -= 1;
+        low++;
+        high--;
       }
     }
 

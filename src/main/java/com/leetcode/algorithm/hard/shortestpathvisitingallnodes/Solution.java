@@ -46,4 +46,43 @@ class Solution {
 
     return -1;
   }
+
+  private static class State2 {
+    int mask;
+    int source;
+
+    State2(int m, int s) {
+      mask = m;
+      source = s;
+    }
+  }
+
+  public int shortestPathLength2(int[][] graph) {
+    int n = graph.length;
+    int[][] dp = new int[n][1 << n];
+    Queue<State2> queue = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+      Arrays.fill(dp[i], Integer.MAX_VALUE);
+      dp[i][1 << i] = 0;
+      queue.offer(new State2(1 << i, i));
+    }
+
+    while (!queue.isEmpty()) {
+      State2 state = queue.poll();
+
+      for (int next: graph[state.source]) {
+        int nextMask = state.mask | 1 << next;
+        if (dp[next][nextMask] > dp[state.source][state.mask] + 1) {
+          dp[next][nextMask] = dp[state.source][state.mask] + 1;
+          queue.offer(new State2(nextMask, next));
+        }
+      }
+    }
+
+    int ans = Integer.MAX_VALUE;
+    for (int i = 0; i < graph.length; i++) {
+      ans = Math.min(ans, dp[i][(1 << n) - 1]);
+    }
+    return ans;
+  }
 }

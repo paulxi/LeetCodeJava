@@ -10,4 +10,10 @@ public class SolutionTest {
     Solution solution = new Solution();
     assertEquals(true, solution.stoneGame(new int[] {5, 3, 4, 5}));
   }
+
+  @Test
+  public void testCase2() {
+    Solution solution = new Solution();
+    assertEquals(true, solution.stoneGame2(new int[] {5, 3, 4, 5}));
+  }
 }

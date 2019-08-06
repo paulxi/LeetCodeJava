@@ -23,6 +23,15 @@ public class SolutionTest {
 
     TreeNode target = root.left;
 
-    assertEquals(Arrays.asList(7, 4, 1), solution.distanceK(root, target, 2));
+    assertEquals(Arrays.asList(1, 4, 7), solution.distanceK(root, target, 2));
+  }
+
+  @Test
+  public void testCase2() {
+    Solution solution = new Solution();
+    TreeNode root = new TreeNode(1);
+    TreeNode target = root;
+
+    assertEquals(Arrays.asList(), solution.distanceK(root, target, 3));
   }
 }

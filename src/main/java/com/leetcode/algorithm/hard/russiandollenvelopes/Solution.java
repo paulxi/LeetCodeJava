@@ -31,4 +31,42 @@ class Solution {
 
     return len;
   }
+
+  public int maxEnvelopes2(int[][] envelopes) {
+    if (envelopes.length == 0 || envelopes[0].length == 0) {
+      return 0;
+    }
+
+    Arrays.sort(envelopes, (a, b) -> {
+      if (a[0] == b[0]) {
+        return b[1] - a[1];
+      } else {
+        return a[0] - b[0];
+      }
+    });
+
+    int m = envelopes.length;
+    int[] dp = new int[m];
+    int size = 0;
+    for (int[] en: envelopes) {
+      int lo = 0;
+      int hi = size;
+
+      while (lo < hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (dp[mid] < en[1]) {
+          lo = mid + 1;
+        } else {
+          hi = mid;
+        }
+      }
+
+      dp[lo] = en[1];
+      if (lo == size) {
+        size++;
+      }
+    }
+
+    return size;
+  }
 }
