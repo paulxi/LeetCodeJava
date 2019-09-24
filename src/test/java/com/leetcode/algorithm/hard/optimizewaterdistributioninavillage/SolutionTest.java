@@ -9,7 +9,9 @@ public class SolutionTest {
   public void testCase1() {
     Solution solution = new Solution();
     assertEquals(
-        2,
+        3,
         solution.minCostToSupplyWater(3, new int[] {1, 2, 2}, new int[][] {{1, 2, 1}, {2, 3, 1}}));
   }
 }
+
+
