@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.medium.minimumsizesubarraysum;
+package com.leetcode.algorithm.medium.minimumswapstomakesequencesincreasing;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +8,6 @@ public class SolutionTest {
   @Test
   public void testCase1() {
     Solution solution = new Solution();
-    assertEquals(2, solution.minSubArrayLen(7, new int[] {2, 3, 1, 2, 4, 3}));
+    assertEquals(1, solution.minSwap(new int[] {1, 3, 5, 4}, new int[] {1, 2, 3, 7}));
   }
 }
