@@ -36,7 +36,8 @@ public class BoundedBlockingQueueTest {
     t2.start();
 
     try {
-      Thread.sleep(100);
+      t1.join();
+      t2.join();
       assertEquals(2, queue.size());
     } catch (Exception ex) {
       fail(ex);

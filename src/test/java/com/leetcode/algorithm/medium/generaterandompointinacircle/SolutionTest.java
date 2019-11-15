@@ -16,6 +16,6 @@ public class SolutionTest {
   public void testCase2() {
     Solution solution = new Solution(10,5,-7.5);
     double[] point = solution.randPoint();
-    assertTrue(point[0] >= -5 && point[0] <= 15 && point[1] >= -17.5 && point[1] <= -2.5);
+    assertTrue(point[0] >= -5 && point[0] <= 15 && point[1] >= -17.5 && point[1] <= 2.5);
   }
 }

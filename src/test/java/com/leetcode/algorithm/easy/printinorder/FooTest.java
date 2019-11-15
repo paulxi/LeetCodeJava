@@ -62,7 +62,9 @@ public class FooTest {
     t3.start();
 
     try {
-      Thread.sleep(100);
+      t1.join();
+      t2.join();
+      t3.join();
       assertEquals("firstsecondthird", result);
     } catch (Exception ex) {
       fail(ex);
@@ -112,7 +114,9 @@ public class FooTest {
     t2.start();
 
     try {
-      Thread.sleep(100);
+      t1.join();
+      t3.join();
+      t2.join();
       assertEquals("firstsecondthird", result);
     } catch (Exception ex) {
       fail(ex);
