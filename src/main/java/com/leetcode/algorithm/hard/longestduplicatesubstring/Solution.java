@@ -74,8 +74,6 @@ class Solution {
 
   private long hash(String key, int len) {
     // From Algorithms 4th edition
-    // “xi = ti RM−1 + ti+1 RM−2 + . . . + ti+M−1R0”
-    // “xi+1 = (xi − ti RM−1) R + ti+M.”
     long h = 0;
     for (int j = 0; j < len; j++) {
       h = (r * h + key.charAt(j)) % q;
