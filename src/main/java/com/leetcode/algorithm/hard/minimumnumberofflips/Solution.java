@@ -59,7 +59,7 @@ class Solution {
         return result;
     }
 
-    private class Pair {
+    private static class Pair {
         int num;
         int cost;
 
